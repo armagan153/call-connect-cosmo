@@ -1,16 +1,16 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
-import { CallQueue } from "@/components/CallQueue";
+import { Dashboard } from "@/components/Dashboard";
 
 const Index = () => {
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full bg-crm-background">
+      <div className="min-h-screen flex w-full bg-gray-50">
         <AppSidebar />
         <main className="flex-1">
           <div className="container mx-auto">
             <SidebarTrigger className="my-4" />
-            <CallQueue />
+            <Dashboard />
           </div>
         </main>
       </div>

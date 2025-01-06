@@ -1,4 +1,4 @@
-import { Phone, Users, History, Settings } from "lucide-react";
+import { Monitor, Phone, History, Settings, Search, Star } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -11,10 +11,10 @@ import {
 } from "@/components/ui/sidebar";
 
 const menuItems = [
-  { title: "Call Queue", icon: Phone, url: "/" },
-  { title: "Customers", icon: Users, url: "/customers" },
-  { title: "Call History", icon: History, url: "/history" },
-  { title: "Settings", icon: Settings, url: "/settings" },
+  { title: "Temsilci", icon: Monitor, url: "/" },
+  { title: "Arama Listem", icon: Phone, url: "/calls" },
+  { title: "Son Çağrılarım", icon: History, url: "/history" },
+  { title: "Ayarlar", icon: Settings, url: "/settings" },
 ];
 
 export function AppSidebar() {
@@ -22,7 +22,25 @@ export function AppSidebar() {
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Call Center CRM</SidebarGroupLabel>
+          <div className="p-4">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center text-white">
+                A
+              </div>
+              <div>
+                <h3 className="font-medium">Armağan Önerr</h3>
+                <p className="text-sm text-gray-500">Cosmos Co</p>
+              </div>
+            </div>
+            <div className="relative">
+              <input
+                type="text"
+                placeholder="Bir şey mi arıyorsunuz?"
+                className="w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg text-sm"
+              />
+              <Search className="absolute left-3 top-2.5 w-4 h-4 text-gray-400" />
+            </div>
+          </div>
           <SidebarGroupContent>
             <SidebarMenu>
               {menuItems.map((item) => (
