@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Phone, Clock } from "lucide-react";
+import { AsteriskStatus } from "./AsteriskStatus";
 import {
   AreaChart,
   Area,
@@ -60,7 +61,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-3 gap-6">
         <Card className="p-6">
           <h3 className="text-lg font-medium mb-4">Bakiye Bilgisi</h3>
           <div className="space-y-4">
@@ -112,6 +113,8 @@ export function Dashboard() {
             </div>
           </div>
         </Card>
+
+        <AsteriskStatus />
       </div>
 
       <div className="grid grid-cols-2 gap-6">
