@@ -1,4 +1,17 @@
-import { Monitor, Phone, History, Settings, Search, Star } from "lucide-react";
+import {
+  Monitor,
+  Phone,
+  History,
+  Settings,
+  Search,
+  Users,
+  FileText,
+  Headphones,
+  Receipt,
+  TicketCheck,
+  UserCog,
+  BarChart3,
+} from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -12,8 +25,14 @@ import {
 
 const menuItems = [
   { title: "Temsilci", icon: Monitor, url: "/" },
-  { title: "Arama Listem", icon: Phone, url: "/calls" },
+  { title: "Müşteri Yönetimi", icon: Users, url: "/customers" },
+  { title: "Raporlar", icon: BarChart3, url: "/reports" },
+  { title: "Çağrı Kayıtları", icon: Phone, url: "/calls" },
+  { title: "Ses Kayıtları", icon: Headphones, url: "/recordings" },
   { title: "Son Çağrılarım", icon: History, url: "/history" },
+  { title: "Faturalar", icon: Receipt, url: "/invoices" },
+  { title: "Destek Talepleri", icon: TicketCheck, url: "/tickets" },
+  { title: "Kullanıcı Yönetimi", icon: UserCog, url: "/users" },
   { title: "Ayarlar", icon: Settings, url: "/settings" },
 ];
 
