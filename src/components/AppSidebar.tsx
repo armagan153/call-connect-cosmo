@@ -21,7 +21,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
 } from "@/components/ui/sidebar";
+import { SipPhone } from "@/components/SipPhone";
 
 const menuItems = [
   { title: "Temsilci", icon: Monitor, url: "/" },
@@ -76,6 +78,9 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter className="p-4">
+        <SipPhone />
+      </SidebarFooter>
     </Sidebar>
   );
 }
