@@ -63,7 +63,20 @@ export function Dashboard() {
       </div>
 
       <div className="grid grid-cols-3 gap-6">
-        <SipPhone />
+        <Card className="p-6">
+          <h3 className="text-lg font-medium mb-4">Bakiye Bilgisi</h3>
+          <div className="space-y-4">
+            <div>
+              <p className="text-sm text-gray-500">Kullanılabilir Bakiye</p>
+              <p className="text-2xl font-semibold">0.00</p>
+            </div>
+            <div>
+              <p className="text-sm text-gray-500">Toplam Bakiye</p>
+              <p>0.00</p>
+            </div>
+          </div>
+        </Card>
+
         <Card className="p-6">
           <h3 className="text-lg font-medium mb-4">Çağrı Değerlendirme</h3>
           <div className="space-y-4">
@@ -106,27 +119,30 @@ export function Dashboard() {
       </div>
 
       <div className="grid grid-cols-2 gap-6">
-        <Card className="p-6">
-          <h3 className="text-lg font-medium mb-4">Disk Kullanım Durumu</h3>
-          <div className="flex justify-center mb-4">
-            <div className="relative w-32 h-32">
-              <Progress value={137} className="h-32 w-32" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-xl font-semibold">137%</span>
+        <div className="space-y-6">
+          <SipPhone />
+          <Card className="p-6">
+            <h3 className="text-lg font-medium mb-4">Disk Kullanım Durumu</h3>
+            <div className="flex justify-center mb-4">
+              <div className="relative w-32 h-32">
+                <Progress value={137} className="h-32 w-32" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-xl font-semibold">137%</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4 text-center">
-            <div>
-              <p className="text-sm text-gray-500">KULLANILABİLİR</p>
-              <p className="font-medium">1.00 TB</p>
+            <div className="grid grid-cols-2 gap-4 text-center">
+              <div>
+                <p className="text-sm text-gray-500">KULLANILABİLİR</p>
+                <p className="font-medium">1.00 TB</p>
+              </div>
+              <div>
+                <p className="text-sm text-gray-500">KULLANILAN</p>
+                <p className="font-medium">1.37 TB</p>
+              </div>
             </div>
-            <div>
-              <p className="text-sm text-gray-500">KULLANILAN</p>
-              <p className="font-medium">1.37 TB</p>
-            </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
 
         <Card className="p-6">
           <h3 className="text-lg font-medium mb-4">Günlük Performansınız</h3>
