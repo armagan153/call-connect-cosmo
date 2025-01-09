@@ -29,6 +29,15 @@ import {
 import { SipPhone } from "@/components/SipPhone";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 const menuItems = [
   { title: "Temsilci", icon: Monitor, url: "/" },
@@ -39,7 +48,9 @@ const menuItems = [
     action: {
       icon: UserPlus,
       tooltip: "Yeni Müşteri Ekle",
-      onClick: () => toast.success("Yeni müşteri ekleme formu açıldı")
+      onClick: () => {
+        toast.success("Yeni müşteri ekleme formu açıldı");
+      }
     }
   },
   { title: "Raporlar", icon: BarChart3, url: "/reports" },
@@ -54,7 +65,9 @@ const menuItems = [
     action: {
       icon: MessageSquarePlus,
       tooltip: "Yeni Destek Talebi",
-      onClick: () => toast.success("Yeni destek talebi formu açıldı")
+      onClick: () => {
+        toast.success("Yeni destek talebi formu açıldı");
+      }
     }
   },
   { 
@@ -64,7 +77,9 @@ const menuItems = [
     action: {
       icon: UserPlus,
       tooltip: "Yeni Kullanıcı Ekle",
-      onClick: () => toast.success("Yeni kullanıcı ekleme formu açıldı")
+      onClick: () => {
+        toast.success("Yeni kullanıcı ekleme formu açıldı");
+      }
     }
   },
   { title: "Ayarlar", icon: Settings, url: "/settings" },
@@ -104,18 +119,45 @@ export function AppSidebar() {
                     asChild
                     tooltip={item.action?.tooltip}
                   >
-                    <a href={item.url} className="flex items-center gap-3">
+                    <a 
+                      href={item.url} 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigate(item.url);
+                      }}
+                      className="flex items-center gap-3"
+                    >
                       <item.icon className="h-5 w-5" />
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
                   {item.action && (
-                    <SidebarMenuAction
-                      onClick={item.action.onClick}
-                      tooltip={item.action.tooltip}
-                    >
-                      <item.action.icon className="h-4 w-4" />
-                    </SidebarMenuAction>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <SidebarMenuAction
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            item.action?.onClick();
+                          }}
+                          tooltip={item.action.tooltip}
+                        >
+                          <item.action.icon className="h-4 w-4" />
+                        </SidebarMenuAction>
+                      </DialogTrigger>
+                      <DialogContent>
+                        <DialogHeader>
+                          <DialogTitle>{item.action.tooltip}</DialogTitle>
+                          <DialogDescription>
+                            Bu özellik yakında aktif olacaktır.
+                          </DialogDescription>
+                        </DialogHeader>
+                        <div className="flex justify-end">
+                          <Button variant="outline" onClick={() => toast.success("Form kaydedildi")}>
+                            Kaydet
+                          </Button>
+                        </div>
+                      </DialogContent>
+                    </Dialog>
                   )}
                 </SidebarMenuItem>
               ))}
