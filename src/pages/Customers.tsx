@@ -2,6 +2,15 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, UserPlus, Filter } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { toast } from "sonner";
 
 export default function Customers() {
   return (
@@ -11,10 +20,38 @@ export default function Customers() {
           <h1 className="text-2xl font-semibold">Müşteri Yönetimi</h1>
           <p className="text-gray-500">Müşteri listesi ve detayları</p>
         </div>
-        <Button className="gap-2">
-          <UserPlus className="w-4 h-4" />
-          Yeni Müşteri
-        </Button>
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button className="gap-2" onClick={() => toast.success("Yeni müşteri ekleme formu açıldı")}>
+              <UserPlus className="w-4 h-4" />
+              Yeni Müşteri
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Yeni Müşteri Ekle</DialogTitle>
+              <DialogDescription>
+                Yeni müşteri bilgilerini aşağıdaki forma giriniz.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-4">
+              <div className="space-y-2">
+                <Input id="name" placeholder="Müşteri Adı" />
+              </div>
+              <div className="space-y-2">
+                <Input id="phone" placeholder="Telefon" />
+              </div>
+              <div className="space-y-2">
+                <Input id="email" placeholder="E-posta" />
+              </div>
+            </div>
+            <div className="flex justify-end">
+              <Button onClick={() => toast.success("Müşteri başarıyla eklendi")}>
+                Kaydet
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
 
       <Card className="p-6">
