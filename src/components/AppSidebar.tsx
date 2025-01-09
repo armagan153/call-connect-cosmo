@@ -11,8 +11,6 @@ import {
   TicketCheck,
   UserCog,
   BarChart3,
-  UserPlus,
-  MessageSquarePlus,
 } from "lucide-react";
 import {
   Sidebar,
@@ -24,64 +22,21 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarFooter,
-  SidebarMenuAction,
 } from "@/components/ui/sidebar";
 import { SipPhone } from "@/components/SipPhone";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 const menuItems = [
   { title: "Temsilci", icon: Monitor, url: "/" },
-  { 
-    title: "Müşteri Yönetimi", 
-    icon: Users, 
-    url: "/customers",
-    action: {
-      icon: UserPlus,
-      tooltip: "Yeni Müşteri Ekle",
-      onClick: () => {
-        toast.success("Yeni müşteri ekleme formu açıldı");
-      }
-    }
-  },
+  { title: "Müşteri Yönetimi", icon: Users, url: "/customers" },
   { title: "Raporlar", icon: BarChart3, url: "/reports" },
   { title: "Çağrı Kayıtları", icon: Phone, url: "/calls" },
   { title: "Ses Kayıtları", icon: Headphones, url: "/recordings" },
   { title: "Son Çağrılarım", icon: History, url: "/history" },
   { title: "Faturalar", icon: Receipt, url: "/invoices" },
-  { 
-    title: "Destek Talepleri", 
-    icon: TicketCheck, 
-    url: "/tickets",
-    action: {
-      icon: MessageSquarePlus,
-      tooltip: "Yeni Destek Talebi",
-      onClick: () => {
-        toast.success("Yeni destek talebi formu açıldı");
-      }
-    }
-  },
-  { 
-    title: "Kullanıcı Yönetimi", 
-    icon: UserCog, 
-    url: "/users",
-    action: {
-      icon: UserPlus,
-      tooltip: "Yeni Kullanıcı Ekle",
-      onClick: () => {
-        toast.success("Yeni kullanıcı ekleme formu açıldı");
-      }
-    }
-  },
+  { title: "Destek Talepleri", icon: TicketCheck, url: "/tickets" },
+  { title: "Kullanıcı Yönetimi", icon: UserCog, url: "/users" },
   { title: "Ayarlar", icon: Settings, url: "/settings" },
 ];
 
@@ -117,7 +72,6 @@ export function AppSidebar() {
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
-                    tooltip={item.action?.tooltip}
                   >
                     <a 
                       href={item.url} 
@@ -131,34 +85,6 @@ export function AppSidebar() {
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
-                  {item.action && (
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <SidebarMenuAction
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            item.action?.onClick();
-                          }}
-                          tooltip={item.action.tooltip}
-                        >
-                          <item.action.icon className="h-4 w-4" />
-                        </SidebarMenuAction>
-                      </DialogTrigger>
-                      <DialogContent>
-                        <DialogHeader>
-                          <DialogTitle>{item.action.tooltip}</DialogTitle>
-                          <DialogDescription>
-                            Bu özellik yakında aktif olacaktır.
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="flex justify-end">
-                          <Button variant="outline" onClick={() => toast.success("Form kaydedildi")}>
-                            Kaydet
-                          </Button>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
