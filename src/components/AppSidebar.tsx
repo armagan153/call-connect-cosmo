@@ -11,6 +11,8 @@ import {
   TicketCheck,
   UserCog,
   BarChart3,
+  UserPlus,
+  MessageSquarePlus,
 } from "lucide-react";
 import {
   Sidebar,
@@ -22,23 +24,55 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarFooter,
+  SidebarMenuAction,
 } from "@/components/ui/sidebar";
 import { SipPhone } from "@/components/SipPhone";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const menuItems = [
   { title: "Temsilci", icon: Monitor, url: "/" },
-  { title: "Müşteri Yönetimi", icon: Users, url: "/customers" },
+  { 
+    title: "Müşteri Yönetimi", 
+    icon: Users, 
+    url: "/customers",
+    action: {
+      icon: UserPlus,
+      tooltip: "Yeni Müşteri Ekle",
+      onClick: () => toast.success("Yeni müşteri ekleme formu açıldı")
+    }
+  },
   { title: "Raporlar", icon: BarChart3, url: "/reports" },
   { title: "Çağrı Kayıtları", icon: Phone, url: "/calls" },
   { title: "Ses Kayıtları", icon: Headphones, url: "/recordings" },
   { title: "Son Çağrılarım", icon: History, url: "/history" },
   { title: "Faturalar", icon: Receipt, url: "/invoices" },
-  { title: "Destek Talepleri", icon: TicketCheck, url: "/tickets" },
-  { title: "Kullanıcı Yönetimi", icon: UserCog, url: "/users" },
+  { 
+    title: "Destek Talepleri", 
+    icon: TicketCheck, 
+    url: "/tickets",
+    action: {
+      icon: MessageSquarePlus,
+      tooltip: "Yeni Destek Talebi",
+      onClick: () => toast.success("Yeni destek talebi formu açıldı")
+    }
+  },
+  { 
+    title: "Kullanıcı Yönetimi", 
+    icon: UserCog, 
+    url: "/users",
+    action: {
+      icon: UserPlus,
+      tooltip: "Yeni Kullanıcı Ekle",
+      onClick: () => toast.success("Yeni kullanıcı ekleme formu açıldı")
+    }
+  },
   { title: "Ayarlar", icon: Settings, url: "/settings" },
 ];
 
 export function AppSidebar() {
+  const navigate = useNavigate();
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -66,12 +100,23 @@ export function AppSidebar() {
             <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton
+                    asChild
+                    tooltip={item.action?.tooltip}
+                  >
                     <a href={item.url} className="flex items-center gap-3">
                       <item.icon className="h-5 w-5" />
                       <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
+                  {item.action && (
+                    <SidebarMenuAction
+                      onClick={item.action.onClick}
+                      tooltip={item.action.tooltip}
+                    >
+                      <item.action.icon className="h-4 w-4" />
+                    </SidebarMenuAction>
+                  )}
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
