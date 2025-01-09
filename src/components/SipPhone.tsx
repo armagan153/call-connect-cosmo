@@ -43,6 +43,12 @@ export function SipPhone() {
     });
   };
 
+  const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // Only allow numbers and common phone number characters
+    const value = e.target.value.replace(/[^\d\s+()-]/g, '');
+    setNumber(value);
+  };
+
   return (
     <Card className="p-4 w-full">
       <div className="flex items-center gap-2 mb-4">
@@ -55,8 +61,11 @@ export function SipPhone() {
             type="tel"
             placeholder="Aramak istediğiniz numarayı girin..."
             value={number}
-            onChange={(e) => setNumber(e.target.value)}
+            onChange={handleNumberChange}
             className="text-lg py-3"
+            maxLength={15}
+            pattern="[0-9\s+()-]*"
+            title="Lütfen geçerli bir telefon numarası girin"
           />
           <div className="flex gap-2">
             <Button
