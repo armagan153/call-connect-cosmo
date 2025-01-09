@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
-import { Phone, PhoneOff, Mic, MicOff } from "lucide-react";
+import { Phone, PhoneOff, Mic, MicOff, Headset } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export function SipPhone() {
@@ -44,44 +44,61 @@ export function SipPhone() {
   };
 
   return (
-    <Card className="p-6">
-      <h3 className="text-lg font-medium mb-4">SIP Telefon</h3>
+    <Card className="p-4 w-full">
+      <div className="flex items-center gap-2 mb-4">
+        <Headset className="h-6 w-6 text-blue-500" />
+        <h3 className="text-lg font-medium">SIP Telefon</h3>
+      </div>
       <div className="space-y-4">
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2">
           <Input
             type="tel"
-            placeholder="Numara girin..."
+            placeholder="Aramak istediğiniz numarayı girin..."
             value={number}
             onChange={(e) => setNumber(e.target.value)}
-            className="flex-1"
+            className="text-lg py-3"
           />
-          <Button
-            onClick={handleCall}
-            variant={isCallActive ? "destructive" : "default"}
-            className="w-20"
-          >
-            {isCallActive ? (
-              <PhoneOff className="h-4 w-4" />
-            ) : (
-              <Phone className="h-4 w-4" />
-            )}
-          </Button>
-          <Button
-            onClick={handleMute}
-            variant="outline"
-            className={`w-20 ${isMuted ? "bg-red-50" : ""}`}
-          >
-            {isMuted ? (
-              <MicOff className="h-4 w-4 text-red-500" />
-            ) : (
-              <Mic className="h-4 w-4" />
-            )}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={handleCall}
+              variant={isCallActive ? "destructive" : "default"}
+              className="flex-1 h-12 text-base"
+            >
+              {isCallActive ? (
+                <>
+                  <PhoneOff className="h-5 w-5 mr-2" />
+                  Aramayı Sonlandır
+                </>
+              ) : (
+                <>
+                  <Phone className="h-5 w-5 mr-2" />
+                  Ara
+                </>
+              )}
+            </Button>
+            <Button
+              onClick={handleMute}
+              variant="outline"
+              className={`w-24 h-12 ${isMuted ? "bg-red-50" : ""}`}
+            >
+              {isMuted ? (
+                <>
+                  <MicOff className="h-5 w-5 mr-2 text-red-500" />
+                  Sessiz
+                </>
+              ) : (
+                <>
+                  <Mic className="h-5 w-5 mr-2" />
+                  Ses
+                </>
+              )}
+            </Button>
+          </div>
         </div>
         {isCallActive && (
-          <div className="text-center animate-pulse">
-            <p className="text-sm text-gray-500">
-              Arama sürüyor: {number}
+          <div className="text-center py-2 bg-blue-50 rounded-lg animate-pulse">
+            <p className="text-blue-600 font-medium">
+              {number} numarası ile görüşme devam ediyor...
             </p>
           </div>
         )}
