@@ -2,7 +2,6 @@ import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Phone, Clock } from "lucide-react";
 import { AsteriskStatus } from "./AsteriskStatus";
-import { SipPhone } from "./SipPhone";
 import {
   AreaChart,
   Area,
@@ -40,13 +39,13 @@ const StatusCard = ({ title, time, type }: StatusCardProps) => (
 
 export function Dashboard() {
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="p-4 md:p-6 space-y-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h1 className="text-2xl font-semibold">Hoş Geldin Armağan</h1>
           <p className="text-gray-500">Genel Durum</p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button className="px-4 py-1 text-sm bg-blue-500 text-white rounded-full">
             Gelen
           </button>
@@ -62,7 +61,7 @@ export function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <Card className="p-6">
           <h3 className="text-lg font-medium mb-4">Bakiye Bilgisi</h3>
           <div className="space-y-4">
@@ -118,31 +117,28 @@ export function Dashboard() {
         <AsteriskStatus />
       </div>
 
-      <div className="grid grid-cols-2 gap-6">
-        <div className="space-y-6">
-          <SipPhone />
-          <Card className="p-6">
-            <h3 className="text-lg font-medium mb-4">Disk Kullanım Durumu</h3>
-            <div className="flex justify-center mb-4">
-              <div className="relative w-32 h-32">
-                <Progress value={137} className="h-32 w-32" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-xl font-semibold">137%</span>
-                </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <Card className="p-6">
+          <h3 className="text-lg font-medium mb-4">Disk Kullanım Durumu</h3>
+          <div className="flex justify-center mb-4">
+            <div className="relative w-32 h-32">
+              <Progress value={137} className="h-32 w-32" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <span className="text-xl font-semibold">137%</span>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4 text-center">
-              <div>
-                <p className="text-sm text-gray-500">KULLANILABİLİR</p>
-                <p className="font-medium">1.00 TB</p>
-              </div>
-              <div>
-                <p className="text-sm text-gray-500">KULLANILAN</p>
-                <p className="font-medium">1.37 TB</p>
-              </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4 text-center">
+            <div>
+              <p className="text-sm text-gray-500">KULLANILABİLİR</p>
+              <p className="font-medium">1.00 TB</p>
             </div>
-          </Card>
-        </div>
+            <div>
+              <p className="text-sm text-gray-500">KULLANILAN</p>
+              <p className="font-medium">1.37 TB</p>
+            </div>
+          </div>
+        </Card>
 
         <Card className="p-6">
           <h3 className="text-lg font-medium mb-4">Günlük Performansınız</h3>
